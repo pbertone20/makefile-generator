@@ -1,29 +1,25 @@
 ---SAMPLE RUN---
 <pre>
 <code>
-Enter filenames (e.g. fun1.c fun2.c ...): fun1.c fun2.c fun3.c
-Enter main (e.g. funMain.c): funMain.c
-Enter exe filename (e.g. fun): fun
-Enter header filename (e.g. fun.h): funHeader.h
-Enter compiler (e.g. gcc): gcc 
+Enter filenames (e.g. fun1.c fun2.c ...): fun1.c
+Enter main (e.g. funMain.c): main.c
+Enter exe filename (e.g. fun): exe
+Enter header filename (e.g. fun.h): header.h
+Enter compiler (e.g. gcc): gcc
 Enter flags (e.g. -std=c99 -Wall ...): -std=c99 -Wall
 
 ----------BEGIN MAKEFILE----------
 
-fun: fun1.o fun2.o fun3.o funMain.o funHeader.h
-        gcc -std=c99 -Wall fun1.o fun2.o fun3.o funMain.o -o fun
-funMain.o: funMain.c funHeader.h
-        gcc -std=c99 -Wall -c funMain.c
-fun1.o: fun1.c funHeader.h
+exe: fun1.o main.o header.h
+        gcc -std=c99 -Wall fun1.o main.o -o exe
+main.o: main.c header.h
+        gcc -std=c99 -Wall -c main.c
+fun1.o: fun1.c header.h
         gcc -std=c99 -Wall -c fun1.c
-fun2.o: fun2.c funHeader.h
-        gcc -std=c99 -Wall -c fun2.c
-fun3.o: fun3.c funHeader.h
-        gcc -std=c99 -Wall -c fun3.c
 clean:
-        rm *.o fun
+        rm *.o exe
 ----------END MAKEFILE----------
 
-Time taken = 0.0008192062377929688
+Time taken = 0.001035928726196289
 </code>
 </pre>
