@@ -15,15 +15,25 @@ t0 = time.time()
 with open("makefile", "w") as makefile:
     makefile.write(f"{exe}: {' '.join(objStr)} {head}\n")
     makefile.write(f"\t{compiler} {' '.join(flags)} {' '.join(objStr)} -o {exe}\n")
+    print("\n----------BEGIN MAKEFILE----------")
+    print(f"\n{exe}: {' '.join(objStr)} {objMain} {head}")
+    print(f"\t{compiler} {' '.join(flags)} {' '.join(objStr)} {objMain} -o {exe}")
     
     makefile.write(f"{objMain}: {main} {head}\n")
     makefile.write(f"\t{compiler} {' '.join(flags)} -c {main}\n")
+    print(f"{objMain}: {main} {head}")
+    print(f"\t{compiler} {' '.join(flags)} -c {main}")
     
-    for obj, src in zip(objStr, string):
-        makefile.write(f"{obj}: {src} {head}\n")
-        makefile.write(f"\t{compiler} {' '.join(flags)} -c {src}\n")
+    for obj, str in zip(objStr, string):
+        makefile.write(f"{obj}: {str} {head}\n")
+        makefile.write(f"\t{compiler} {' '.join(flags)} -c {str}\n")
+        print(f"{obj}: {str} {head}")
+        print(f"\t{compiler} {' '.join(flags)} -c {str}")
     
     makefile.write("clean:\n")
     makefile.write(f"\trm *.o {exe}\n")
+    print("clean:")
+    print(f"\trm *.o {exe}")
+    print("----------END MAKEFILE----------\n")
 
 print(f"Time taken = {time.time() - t0}")
