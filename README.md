@@ -1,4 +1,3 @@
-# projects
 ---SAMPLE RUN---
 <pre>
 <code>
