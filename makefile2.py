@@ -13,8 +13,8 @@ flags = input("Enter flags (e.g. -std=c99 -Wall ...): ").split()
 t0 = time.time()
 
 with open("makefile", "w") as makefile:
-    makefile.write(f"{exe}: {' '.join(objStr)} {head}\n")
-    makefile.write(f"\t{compiler} {' '.join(flags)} {' '.join(objStr)} -o {exe}\n")
+    makefile.write(f"{exe}: {' '.join(objStr)} {objMain} {head}\n")
+    makefile.write(f"\t{compiler} {' '.join(flags)} {' '.join(objStr)} {objMain} -o {exe}\n")
     print("\n----------BEGIN MAKEFILE----------")
     print(f"\n{exe}: {' '.join(objStr)} {objMain} {head}")
     print(f"\t{compiler} {' '.join(flags)} {' '.join(objStr)} {objMain} -o {exe}")
